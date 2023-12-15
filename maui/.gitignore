@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Keep React built component
+/wwwroot/js/*
+!/wwwroot/js/.gitkeep
