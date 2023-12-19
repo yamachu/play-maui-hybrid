@@ -11,5 +11,6 @@ public partial class MainPage : ContentPage
 
 		// Register the Blazor WebView component
 		blazorWebView.RootComponents.RegisterForJavaScript<Counter>("BlazorCounter-react");
+		blazorWebView.RootComponents.RegisterForJavaScript<MyCounter>("BlazorMyCounter-react");
 	}
 }
