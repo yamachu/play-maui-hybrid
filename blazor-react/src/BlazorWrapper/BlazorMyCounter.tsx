@@ -1,10 +1,5 @@
 import React from "react";
-import { useBlazor } from "../hooks/useBlazor";
-
-type DotnetReference = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  invokeMethodAsync(managedMethodName: string, ...args: any[]): Promise<any>;
-};
+import { DotnetReference, useBlazor } from "../hooks/useBlazor";
 
 export interface MyBlazorCounterHandler {
   FooBar: () => void;
