@@ -17,6 +17,7 @@ public static class MauiProgram
 		builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
+		// https://learn.microsoft.com/en-us/aspnet/core/blazor/hybrid/developer-tools?view=aspnetcore-8.0
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
