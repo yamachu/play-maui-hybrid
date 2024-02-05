@@ -12,6 +12,8 @@ export default defineConfig(({ mode }) => ({
       name: 'BlazorReact',
       formats: ['es'],
     },
+    minify: mode === 'development' ? false : true,
+    sourcemap: mode === 'development' ? 'inline' : false,
   },
   // React自体がprocess.env.NODE_ENVを参照しているので、defineで消し去る
   define: {
