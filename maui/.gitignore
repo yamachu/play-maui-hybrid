@@ -486,3 +486,4 @@ $RECYCLE.BIN/
 # Keep React built component
 /wwwroot/js/*
 !/wwwroot/js/.gitkeep
+/wwwroot/index.html

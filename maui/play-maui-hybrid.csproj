@@ -64,4 +64,8 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     </ItemGroup>
 
+    <Target Name="CopyFiles" BeforeTargets="Compile">
+        <Copy SourceFiles="wwwroot.template\index.debug.html" DestinationFiles="wwwroot\index.html" Condition="'$(Configuration)'=='' Or '$(Configuration)'=='Debug'" />
+        <Copy SourceFiles="wwwroot.template\index.html" DestinationFiles="wwwroot\index.html" Condition="'$(Configuration)'=='Release'" />
+    </Target>
 </Project>
