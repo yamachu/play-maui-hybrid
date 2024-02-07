@@ -1,55 +1,6 @@
+@inherits BaseComponent<MyCounter>
 <h1>@Title</h1>
 
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    [Parameter] public string Title { get; set; } = "Blazor Component Counter";
-    [Parameter] public EventCallback<int> MyEventCallback { get; set; }
-
-    [Parameter] public EventCallback<DotNetObjectReference<MyCounter>> OnComponentInitializedCb { get; set; }
-    [Parameter] public EventCallback OnComponentDestroyedCb { get; set; }
-
-    private DotNetObjectReference<MyCounter>? objRef;
-
-    protected override void OnInitialized()
-    {
-        objRef = DotNetObjectReference.Create(this);
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-        if (firstRender)
-        {
-            await OnComponentInitializedCb.InvokeAsync(objRef);
-        }
-    }
-
-    public async void Dispose()
-    {
-        GC.SuppressFinalize(this);
-
-        if (objRef != null)
-        {
-            await OnComponentDestroyedCb.InvokeAsync();
-            objRef?.Dispose();
-        }
-    }
-
-    private async Task IncrementCount()
-    {
-        currentCount++;
-        await MyEventCallback.InvokeAsync(currentCount);
-    }
-
-    [JSInvokable("FooBarManaged")]
-    public Task<int> FooBar()
-    {
-        System.Console.WriteLine("FooBar: From BlazorComponent");
-        return Task.FromResult(1);
-    }
-}
