@@ -4,10 +4,13 @@ import {
   MyBlazorCounterHandler,
   MyBlazorCounter,
 } from "./BlazorWrapper/BlazorMyCounter";
+import { useMyBlazorCounter } from "./BlazorWrapper/HookBlazorMyCounter";
 
 function App() {
   const [count, setCount] = useState(0);
   const counterRef = useRef<MyBlazorCounterHandler>(null);
+
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -33,9 +36,26 @@ function App() {
         >
           Call FooBar
         </button>
+        <button onClick={() => setShow((v) => !v)}>show?</button>
+        {show && <Foo />}
       </div>
     </>
   );
 }
+
+const Foo = () => {
+  const [aa, setAa] = useState(0);
+  const { foobar, renderContent } = useMyBlazorCounter({
+    title: `My Counter!! ${aa}`,
+  });
+
+  return (
+    <>
+      <button onClick={() => foobar()}>foobar?</button>
+      <button onClick={() => setAa((v) => v + 1)}>Plus {aa}</button>
+      {renderContent}
+    </>
+  );
+};
 
 export default App;
